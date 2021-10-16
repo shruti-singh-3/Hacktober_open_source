@@ -1,0 +1,51 @@
+/* Given an integer n, using phone keypad find out and print all the possible strings that can be made using digits of input n.
+
+Sample Input:
+23
+Sample Output:
+ad
+ae
+af
+bd
+be
+bf
+cd
+ce
+cf */
+
+
+#include <iostream>
+#include<bits/stdc++.h>
+#include<string>
+using namespace std;
+//Keypad
+string key[]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+            //0 , 1,  2  ,3    ,4    , 5   ,6    ,7     ,8    ,9
+    
+void keypad(int num,string output)
+{
+        if(num==0)
+        {
+            cout<<output<<endl;
+            return ;
+        }
+        string temp=key[num%10];  // taking string corresponding to last digit
+        for(int i=0;i<temp.size();i++)
+            keypad(num/10,temp[i]+output);    //  taking every ch of temp in output 
+    }
+void printKeypad(int num)
+{
+    string output="";
+    keypad(num,output);
+}
+
+
+
+
+int main(){
+    int num;
+    cin >> num;
+
+    printKeypad(num);
+
+    return 0;
